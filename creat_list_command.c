@@ -49,6 +49,18 @@ int	file_numb(t_list *comm, char *str)
 	}
 	return (token);
 }
+
+int her_pip(t_list *cmd)
+{
+    while(cmd)
+    {
+        if(cmd->token==5)
+            return 1;
+        cmd=cmd->next;
+    }
+    return 0;
+}
+
 int	file_numb2(t_list *comm, char *str)
 {
 	t_list	*command;
@@ -103,7 +115,7 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 	spliter[1] = '\0';
 	token = -2;
 	token2 = -2;
-	if (!ther_are_pipe(str))
+	if (!her_pip(command))
 	{
 		
 		while (command)

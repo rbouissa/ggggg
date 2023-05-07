@@ -118,6 +118,8 @@ int	main(int argc, char **argv, char **env)
 			{
 				// s = split_command(str);
 				cmd = ft_split_them(str_2);
+                // printf("%s\n",cmd->data);
+                // printf("%d\n",cmd->next->token);
 				commands = split_to_commands(cmd, str_2);
 				if (commands == NULL)
 					continue ;

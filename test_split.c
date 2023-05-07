@@ -2,7 +2,6 @@
 
 #include "minishell.h"
 
-
 int	find_spliter(char s, char *sp)
 {
 	int	i;
@@ -23,7 +22,7 @@ int	my_token(char *s)
 {
 	int	token;
 
-    token = 0;
+	token = 0;
 	if (!ft_strcmp(s, "|"))
 		token = 5;
 	else if (!ft_strcmp(s, ">"))
@@ -55,17 +54,15 @@ t_list	*ft_split_them(char *str)
 	quotes = 0;
 	j = 0;
 	i = 0;
-	
 	while (str[i])
 	{
-		
 		k = i;
-        //alocation for "quotes string"
+		//alocation for "quotes string"
 		if (str[i] == 34 || str[i] == 39)
 		{
 			quotes = str[i];
 			i++;
-			while (str[i] && (str[i+1] != quotes))
+			while (str[i] && (str[i + 1] != quotes))
 				i++;
 		}
 		else
@@ -81,24 +78,25 @@ t_list	*ft_split_them(char *str)
 			node = malloc(i - k + 1);
 			i = k;
 			j = 0;
-			if (str[i] == 34 || str[i] == 39)
-			{
-				quotes = str[i];
-				//node[j] = str[i];
-				while (str[++i] && (str[i] != quotes))
-				{
-					node[j] = str[i];
-					j++;
-				}
-                i++;
-			}
 			//fill our node
 			while (str[i] && !find_spliter(str[i], "|<> \t"))
 			{
+				if (str[i] == 34 || str[i] == 39)
+				{
+					quotes = str[i];
+					//node[j] = str[i];
+					while (str[++i] && (str[i] != quotes))
+					{
+						node[j] = str[i];
+						j++;
+					}
+					i++;
+				}
 				node[j] = str[i];
 				j++;
 				i++;
 			}
+            
 			node[j] = 0;
 			//to be here just on time for creat the frist node
 			if (check == 0)
@@ -131,14 +129,14 @@ t_list	*ft_split_them(char *str)
 					{
 						st[j] = str[i];
 						j++;
-                        i++;
-                        if(str[i]==str[i-1])
-                        {
-                            st[j] = str[i];
-                            i++;
-                            j++;
-                        }
-                        break;
+						i++;
+						if (str[i] == str[i - 1])
+						{
+							st[j] = str[i];
+							i++;
+							j++;
+						}
+						break ;
 					}
 					i++;
 				}
