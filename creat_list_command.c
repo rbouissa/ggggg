@@ -177,6 +177,7 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 				command = command->next;
 				if (check == 0)
 				{
+                    printf("one\n");
 					check = 1;
 					if (command->token == 2)
 					{
@@ -189,17 +190,18 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 					freestack_last(&comm);
 					if (hrd != NULL)
 					{
-						if (cmd != NULL)
+						if (cmd == NULL)
 						{
-							list = ft_lstnew_new(ft_split(cmd, 19), token,
-									token2, ft_split(hrd, 19), 1);
-						}
-						else
-						{
-							full_cmd = malloc(sizeof(char *));
+                            full_cmd = malloc(sizeof(char *));
 							full_cmd[0] = 0;
 							list = ft_lstnew_new(full_cmd, token, token2,
 									ft_split(hrd, 19), 1);
+							
+						}
+						else
+						{
+							list = ft_lstnew_new(ft_split(cmd, 19), token,
+									token2, ft_split(hrd, 19), 1);
 							//free(full_cmd);
 						}
 					}
@@ -221,24 +223,31 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 					else if (command->token == 3)
 					{
 						token2 = file_numb2(comm, str);
-					}
+                    }
 					freestack_last(&comm);
 					if (hrd != NULL)
 					{
+                        
 						if (cmd != NULL)
 						{
+                            
 							ft_lstadd_back_new(&list,
 									ft_lstnew_new(ft_split(cmd, 19), token,
 										token2, ft_split(hrd, 19), 1));
 						}
 						else
 						{
+                           
 							full_cmd = malloc(sizeof(char *));
 							full_cmd[0] = 0;
 							ft_lstadd_back_new(&list, ft_lstnew_new(full_cmd,
-										token, token2, herdoc, 1));
+										token, token2, ft_split(hrd, 19), 1));
 							//free(full_cmd);
 						}
+                        // int e;
+                        // e =0;
+                        // printf("->>>>>%s\n",list->herdoc[e]);
+                        // e++;
 					}
 					else
 					{
@@ -284,10 +293,13 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 			}
 			else
 			{
+                 
 				full_cmd = malloc(sizeof(char *));
 				full_cmd[0] = 0;
 				ft_lstadd_back_new(&list, ft_lstnew_new(full_cmd, token, token2,
 							ft_split(hrd, 19), 1));
+                            
+                            //printf("%s\n->>>",herdoc[0]);
 				//free(full_cmd);
 			}
 		}
