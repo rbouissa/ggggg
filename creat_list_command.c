@@ -21,7 +21,7 @@ void	freestack_last(t_list **stack)
 	//     free(temp);
 }
 
-int	file_numb(t_list *comm, char *str)
+int	file_numb(t_list *comm)
 {
 	t_list	*command;
 	t_list	*cm;
@@ -29,7 +29,6 @@ int	file_numb(t_list *comm, char *str)
 
 	token = 0;
 	cm = comm;
-	(void)str;
 	command = comm;
 	while (command->next)
 	{
@@ -61,7 +60,7 @@ int her_pip(t_list *cmd)
     return 0;
 }
 
-int	file_numb2(t_list *comm, char *str)
+int	file_numb2(t_list *comm)
 {
 	t_list	*command;
 	t_list	*cm;
@@ -69,7 +68,6 @@ int	file_numb2(t_list *comm, char *str)
 
 	token = 0;
 	cm = comm;
-	(void)str;
 	command = comm;
 	while (command->next)
 	{
@@ -91,7 +89,7 @@ int	file_numb2(t_list *comm, char *str)
 	return (token);
 }
 
-t_cmd	*split_to_commands(t_list *comm, char *str)
+t_cmd	*split_to_commands(t_list *comm)
 {
 	char *cmd;
 	char *hrd;
@@ -123,9 +121,9 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 			if (command->token == 2 || command->token == 3)
 			{
 				if (command->token == 2)
-					token = file_numb(comm, str);
+					token = file_numb(comm);
 				else if (command->token == 3)
-					token2 = file_numb2(comm, str);
+					token2 = file_numb2(comm);
 				command = command->next->next;
 			}
 			else if (command->token == 4)
@@ -173,7 +171,6 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 		{
 			if (command->token == 5)
 			{
-				//hrd = NULL;
 				command = command->next;
 				if (check == 0)
 				{
@@ -181,11 +178,11 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 					check = 1;
 					if (command->token == 2)
 					{
-						token = file_numb(comm, str);
+						token = file_numb(comm);
 					}
 					else if (command->token == 3)
 					{
-						token2 = file_numb2(comm, str);
+						token2 = file_numb2(comm);
 					}
 					freestack_last(&comm);
 					if (hrd != NULL)
@@ -218,11 +215,11 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 				{
 					if (command->token == 2)
 					{
-						token = file_numb(comm, str);
+						token = file_numb(comm);
 					}
 					else if (command->token == 3)
 					{
-						token2 = file_numb2(comm, str);
+						token2 = file_numb2(comm);
                     }
 					freestack_last(&comm);
 					if (hrd != NULL)
@@ -230,7 +227,6 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
                         
 						if (cmd != NULL)
 						{
-                            
 							ft_lstadd_back_new(&list,
 									ft_lstnew_new(ft_split(cmd, 19), token,
 										token2, ft_split(hrd, 19), 1));
@@ -244,10 +240,6 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 										token, token2, ft_split(hrd, 19), 1));
 							//free(full_cmd);
 						}
-                        // int e;
-                        // e =0;
-                        // printf("->>>>>%s\n",list->herdoc[e]);
-                        // e++;
 					}
 					else
 					{
@@ -264,9 +256,9 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 			else if (command->token == 2 || command->token == 3)
 			{
 				if (command->token == 2)
-					token = file_numb(comm, str);
+					token = file_numb(comm);
 				else if (command->token == 3)
-					token2 = file_numb2(comm, str);
+					token2 = file_numb2(comm);
 				command = command->next->next;
 			}
 			else if (command->token == 4)
@@ -298,8 +290,6 @@ t_cmd	*split_to_commands(t_list *comm, char *str)
 				full_cmd[0] = 0;
 				ft_lstadd_back_new(&list, ft_lstnew_new(full_cmd, token, token2,
 							ft_split(hrd, 19), 1));
-                            
-                            //printf("%s\n->>>",herdoc[0]);
 				//free(full_cmd);
 			}
 		}

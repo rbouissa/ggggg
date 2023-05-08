@@ -6,7 +6,7 @@
 /*   By: rbouissa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:54:47 by met-tahe          #+#    #+#             */
-/*   Updated: 2023/05/07 14:59:20 by rbouissa         ###   ########.fr       */
+/*   Updated: 2023/05/08 09:44:22 by rbouissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ t_list				*ft_split_them(char *str);
 t_cmd				*ft_lstnew_new(char **content, int t, int k, char **her,
 						int t_her);
 void				ft_lstadd_back_new(t_cmd **lst, t_cmd *new);
-t_cmd				*split_to_commands(t_list *comm, char *str);
+t_cmd				*split_to_commands(t_list *comm);
 int					ther_are_pipe(char *str);
 char *handle_quotes(char *str, t_mini *env);
 int	find_spliter(char s, char *sp);
