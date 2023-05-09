@@ -6,7 +6,7 @@
 /*   By: rbouissa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:54:47 by met-tahe          #+#    #+#             */
-/*   Updated: 2023/05/08 09:44:22 by rbouissa         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:12:30 by rbouissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,4 +142,8 @@ int					ther_are_pipe(char *str);
 char *handle_quotes(char *str, t_mini *env);
 int	find_spliter(char s, char *sp);
 char	*ft_itoa(int n);
+int	check_eroor(char *str);
+char	*remove_quotes(t_list *node);
+int size_of_quotes(char *string);
+char	*string_no_quotes(char *str);
 #endif

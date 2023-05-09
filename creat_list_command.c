@@ -177,13 +177,9 @@ t_cmd	*split_to_commands(t_list *comm)
                     printf("one\n");
 					check = 1;
 					if (command->token == 2)
-					{
 						token = file_numb(comm);
-					}
 					else if (command->token == 3)
-					{
 						token2 = file_numb2(comm);
-					}
 					freestack_last(&comm);
 					if (hrd != NULL)
 					{
@@ -196,11 +192,9 @@ t_cmd	*split_to_commands(t_list *comm)
 							
 						}
 						else
-						{
 							list = ft_lstnew_new(ft_split(cmd, 19), token,
 									token2, ft_split(hrd, 19), 1);
 							//free(full_cmd);
-						}
 					}
 					else
 					{
@@ -214,23 +208,17 @@ t_cmd	*split_to_commands(t_list *comm)
 				else
 				{
 					if (command->token == 2)
-					{
 						token = file_numb(comm);
-					}
 					else if (command->token == 3)
-					{
 						token2 = file_numb2(comm);
-                    }
 					freestack_last(&comm);
 					if (hrd != NULL)
 					{
                         
 						if (cmd != NULL)
-						{
 							ft_lstadd_back_new(&list,
 									ft_lstnew_new(ft_split(cmd, 19), token,
 										token2, ft_split(hrd, 19), 1));
-						}
 						else
 						{
                            
@@ -279,10 +267,8 @@ t_cmd	*split_to_commands(t_list *comm)
 		if (hrd != NULL)
 		{
 			if (cmd != NULL)
-			{
 				ft_lstadd_back_new(&list, ft_lstnew_new(ft_split(cmd, 19),
 							token, token2, ft_split(hrd, 19), 1));
-			}
 			else
 			{
                  

@@ -42,6 +42,7 @@ t_list	*ft_split_them(char *str)
 {
 	t_list	*s;
 	int		i;
+    int e;
 	char	*node;
 	char	*st;
 	int		j;
@@ -49,54 +50,39 @@ t_list	*ft_split_them(char *str)
 	int		check;
 	int		token;
 	int		quotes;
+	int		check_q;
 
 	check = 0;
+	check_q = 0;
 	quotes = 0;
 	j = 0;
 	i = 0;
+    e=0;
 	while (str[i])
 	{
 		k = i;
-		//alocation for "quotes string"
-		if (str[i] == 34 || str[i] == 39)
-		{
-			quotes = str[i];
+		//for alocation
+		while (str[i] && !find_spliter(str[i], "|<> \t"))
 			i++;
-			while (str[i] && (str[i + 1] != quotes))
-				i++;
-		}
-		else
-		{
-			//for alocation
-			while (str[i] && !find_spliter(str[i], "|<> \t"))
-				i++;
-		}
 		//if don't find the spliter in the front
 		if (i - k != 0)
 		{
+            if(check_q)
+                node= malloc(i-k+1-e*2);
 			//the alocate
+            else
 			node = malloc(i - k + 1);
+			printf("%i--------------------------->>>%d\n", i, i - k + 1);
 			i = k;
 			j = 0;
 			//fill our node
 			while (str[i] && !find_spliter(str[i], "|<> \t"))
 			{
-				if (str[i] == 34 || str[i] == 39)
-				{
-					quotes = str[i];
-					//node[j] = str[i];
-					while (str[++i] && (str[i] != quotes))
-					{
-						node[j] = str[i];
-						j++;
-					}
-					i++;
-				}
+			
 				node[j] = str[i];
 				j++;
 				i++;
 			}
-            
 			node[j] = 0;
 			//to be here just on time for creat the frist node
 			if (check == 0)
@@ -158,6 +144,20 @@ t_list	*ft_split_them(char *str)
 	return (s);
 }
 
+// char *all_string(t_list *node)
+// {
+//     int i;
+//     t_list *tmp;
+
+//     i = 0;
+//     tmp = node;
+//     while (tmp)
+//     {
+
+//         tmp=tmp->next;
+//     }
+
+// }
 // int	main(int argc, char **argv)
 // {
 // 	t_list	*s;

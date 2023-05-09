@@ -21,6 +21,7 @@ SRC		= main.c \
 			test_split.c \
 			creat_list_command.c \
 			execution/signals.c \
+			quotes.c\
 
 OBJ	= $(SRC:.c=.o)
 

@@ -168,6 +168,7 @@ char	*handle_quotes(char *str, t_mini *env)
 	i = 0;
 	while (str[i])
 	{
+        
 		if (str[i] == '\'' && quotes == no_quotes)
 			quotes = isingle_quotes;
 		else if (str[i] == '\"' && quotes == no_quotes)
@@ -183,6 +184,7 @@ char	*handle_quotes(char *str, t_mini *env)
 		}
 		i++;
 	}
+    
 	if (quotes == idouble_quotes || quotes == isingle_quotes)
 	{
 		ft_write("syntax error exepected quote");
@@ -190,7 +192,11 @@ char	*handle_quotes(char *str, t_mini *env)
 		return (NULL);
 	}
 	else if (k)
+    {
 		return (buffer);
+    }
 	else
+    {
 		return (str);
+    }
 }

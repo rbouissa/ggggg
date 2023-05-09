@@ -22,6 +22,7 @@ typedef struct s_list
 	int				token;
 	struct s_list	*next;
 }					t_list;
+
 /*-----------------------------------MY PART--------------------------------*/
 typedef struct s_cmd
 {

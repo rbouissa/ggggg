@@ -13,14 +13,6 @@ int	ther_are_pipe(char *str)
 	quotes = 0;
 	while (str[i])
 	{
-		// if (str[i] == 34 || str[i] == 39)
-		// {
-		//     printf("jgkjg\n");
-		// 	quotes = str[i];
-		// 	i++;
-		// 	while (str[i] && (str[i+1] != quotes))
-		// 		i++;
-		// }
 		if (str[i] == '|')
 			return (1);
 		i++;
@@ -54,6 +46,7 @@ void	print_cmd(t_cmd *cmd)
 		tmp = tmp->next;
 	}
 }
+
 int	alot_of_spliter(char *s)
 {
 	int	i;
@@ -66,6 +59,7 @@ int	alot_of_spliter(char *s)
 	else
 		return (0);
 }
+
 int	main(int argc, char **argv, char **env)
 {
 	char			*str;
@@ -111,6 +105,10 @@ int	main(int argc, char **argv, char **env)
 			exit(0);
 		}
 		str_2 = handle_quotes(str, mini);
+        str_2=string_no_quotes(str_2);
+        // printf("hhhhh\n");
+        // printf("size_ofquotes  %s\n",string_no_quotes(str_2));
+        // printf("%s\n",str_2);
 		if (alot_of_spliter(str_2))
 		{
 			//add expanding variables
