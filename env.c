@@ -81,6 +81,7 @@ char	*ft_expand(char *str, t_mini *expand, int start)
 	before = NULL;
 	var = NULL;
 	valeur = NULL;
+    full_string = NULL;
 	before = malloc(start);
 	while (i < start - 1)
 	{
@@ -95,7 +96,7 @@ char	*ft_expand(char *str, t_mini *expand, int start)
 		var[0] = '?';
 		var[1] = '\0';
         i++;
-	}
+	}  
 	else
 	{
 		while (!find_spliter1(str[start + i], "|>< \t\n\'\""))
@@ -131,6 +132,26 @@ char	*ft_expand(char *str, t_mini *expand, int start)
 	return (full_string);
 }
 
+int ft_check_cote(char *str,int i)
+{
+    int j;
+    int z;
+
+    j = 0;
+    z = 0;
+    while (str[j] && j < i)
+    {
+        
+        if (str[j] == '\"')
+            z++;
+        j++;
+    }
+    if ( z%2 == 0)
+        return (0);
+    else
+        return (1);
+}
+
 char	*exp_hoho(char *str, t_mini *expand)
 {
 	int	i;
@@ -138,10 +159,20 @@ char	*exp_hoho(char *str, t_mini *expand)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$' && str[i + 1])
+        if (str[i] == '\''&& str[i + 1] && ft_check_cote(str,i) == 0)
+        {
+            i++;
+            while(str[i] && str[i] != '\'')
+                i++;
+            if(str[i])
+                i++;
+            printf("kooooooo%c\n",str[i]);
+            continue;
+        }
+		else if (str[i] == '$' && str[i + 1])
 		{
 			i++;
-			//printf("%c\n",str[i]);
+			
 			str = ft_expand(str, expand, i);
 			if (!str[i - 1])
 				i--;
@@ -151,6 +182,7 @@ char	*exp_hoho(char *str, t_mini *expand)
 		i++;
 	}
 	str[i] = '\0';
+
 	return (str);
 }
 
@@ -170,21 +202,37 @@ char	*handle_quotes(char *str, t_mini *env)
 	{
         
 		if (str[i] == '\'' && quotes == no_quotes)
+        {
+            // printf("aaaaa%d\n",quotes);
 			quotes = isingle_quotes;
+        }
 		else if (str[i] == '\"' && quotes == no_quotes)
+        {
+            // printf("bbbb%d\n",quotes);
 			quotes = idouble_quotes;
+        }
 		else if (str[i] == '\"' && quotes == idouble_quotes)
+        {
+            // printf("ddd%d\n",quotes);
 			quotes = no_quotes;
+        }
 		else if (str[i] == '\'' && quotes == isingle_quotes)
+        {
+            printf("eee%d\n",quotes);
 			quotes = no_quotes;
+        }
 		if (str[i] == '$' && quotes != isingle_quotes)
 		{
+            if (buffer != NULL)
+                 printf("c---------->%c\n",str[i]);
+            // printf("----->%d\n",quotes);
 			buffer = exp_hoho(str, env);
+            // printf("%s,bufer\n",buffer);
 			k++;
 		}
 		i++;
 	}
-    
+    // printf("kkkk%d\n",k);
 	if (quotes == idouble_quotes || quotes == isingle_quotes)
 	{
 		ft_write("syntax error exepected quote");

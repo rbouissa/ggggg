@@ -6,7 +6,7 @@
 /*   By: rbouissa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:54:47 by met-tahe          #+#    #+#             */
-/*   Updated: 2023/05/09 17:12:30 by rbouissa         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:12:17 by rbouissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,6 @@ int	find_spliter(char s, char *sp);
 char	*ft_itoa(int n);
 int	check_eroor(char *str);
 char	*remove_quotes(t_list *node);
-int size_of_quotes(char *string);
+int size_of_quotes(char *c);
 char	*string_no_quotes(char *str);
 #endif

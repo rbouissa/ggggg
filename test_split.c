@@ -42,7 +42,7 @@ t_list	*ft_split_them(char *str)
 {
 	t_list	*s;
 	int		i;
-    int e;
+	int		e;
 	char	*node;
 	char	*st;
 	int		j;
@@ -55,30 +55,93 @@ t_list	*ft_split_them(char *str)
 	check = 0;
 	check_q = 0;
 	quotes = 0;
+    node = NULL;
+    st = NULL;
+    s=NULL;
 	j = 0;
 	i = 0;
-    e=0;
+	e = 0;
+    token = 0;
+    k=0;
 	while (str[i])
 	{
 		k = i;
 		//for alocation
 		while (str[i] && !find_spliter(str[i], "|<> \t"))
-			i++;
+        {
+        //     if (str[i] == 39)
+		// {
+		// 	i++;
+		// 	while (str[i] && str[i] != 39)
+		// 		i++;
+		// 	if (str[i])
+		// 		{i++; continue ;}
+		// }
+		// if (str[i] == 34)
+		// {
+		// 	i++;
+		// 	while (str[i] && str[i] != 34)
+		// 		i++;
+		// 	if (str[i])
+		// 		{i++; continue ;}
+		// }
+            i++;
+        }
+			
 		//if don't find the spliter in the front
 		if (i - k != 0)
 		{
-            if(check_q)
-                node= malloc(i-k+1-e*2);
 			//the alocate
-            else
+            //printf("->>>i$k%d\n",i-k);
 			node = malloc(i - k + 1);
-			printf("%i--------------------------->>>%d\n", i, i - k + 1);
+			// printf("%i--------------------------->>>%d\n", i, i - k + 1);
 			i = k;
 			j = 0;
 			//fill our node
 			while (str[i] && !find_spliter(str[i], "|<> \t"))
 			{
-			
+				// if (str[i] == 34)
+				// {
+                //     node[j] = str[i];
+				// 		j++;
+				// 		i++;
+				// 	while (str[i] && str[i] != 34)
+				// 	{
+                        
+				// 		node[j] = str[i];
+				// 		j++;
+				// 		i++;
+				// 	}
+                //     node[j] = str[i];
+				// 		j++;
+				// 		i++;
+				// 	if (str[i])
+				// 	{
+				// 		i++;
+				// 		continue ;
+				// 	}
+				// }
+				// if (str[i] == 39)
+				// {
+                    
+                //     node[j] = str[i];
+				// 		j++;
+				// 		i++;
+				// 	while (str[i] && str[i] != 39)
+				// 	{
+				// 		node[j] = str[i];
+				// 		j++;
+				// 		i++;
+				// 	}
+                //     node[j] = str[i];
+				// 		j++;
+				// 		i++;
+				// 	if (str[i])
+				// 	{
+				// 		i++;
+				// 		continue ;
+				// 	}
+				// }
 				node[j] = str[i];
 				j++;
 				i++;
@@ -87,12 +150,17 @@ t_list	*ft_split_them(char *str)
 			//to be here just on time for creat the frist node
 			if (check == 0)
 			{
-				s = ft_lstnew(node, 0);
+                //printf("noood%s\n",node);
+
+				s = ft_lstnew(string_no_quotes(node), 0);
 				check = 1;
 			}
 			//her for the rest
 			else
-				ft_lstadd_back(&s, ft_lstnew(node, 0));
+            {
+                 //printf("noood%s\n",node);
+				ft_lstadd_back(&s, ft_lstnew(string_no_quotes(node), 0));
+            }
 		}
 		else
 		{
@@ -136,7 +204,7 @@ t_list	*ft_split_them(char *str)
 				else
 				{
 					token = my_token(st);
-					ft_lstadd_back(&s, ft_lstnew(st, token));
+					ft_lstadd_back(&s, ft_lstnew(string_no_quotes(st), token));
 				}
 			}
 		}

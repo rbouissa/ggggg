@@ -105,7 +105,8 @@ int	main(int argc, char **argv, char **env)
 			exit(0);
 		}
 		str_2 = handle_quotes(str, mini);
-        str_2=string_no_quotes(str_2);
+        //printf("ehre00%s\n",str_2);
+        //str_2=string_no_quotes(str_2);
         // printf("hhhhh\n");
         // printf("size_ofquotes  %s\n",string_no_quotes(str_2));
         // printf("%s\n",str_2);
@@ -116,13 +117,16 @@ int	main(int argc, char **argv, char **env)
 			{
 				// s = split_command(str);
 				cmd = ft_split_them(str_2);
+                //printf("size_of%d\n",size_of_quotes(str_2));
+                //printf("->>>%s\n->>>>>",cmd->data);
+                //printf("->>>%s\n->>>>>",cmd->next->data);
                 // printf("%s\n",cmd->data);
                 // printf("%d\n",cmd->next->token);
 				commands = split_to_commands(cmd);
 				if (commands == NULL)
 					continue ;
 				tmp = commands;
-				print_cmd(commands);
+			//print_cmd(commands);
 				if (commands->outfile != -1 && commands->outfile != -1)
 					exec_cmd(mini, commands, env);
 			}
