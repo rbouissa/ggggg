@@ -76,6 +76,7 @@ char	*new_expand(char *str, t_mini *env)
 	dollar[1] = '\0';
 	while (str[i])
 	{
+        e=0;
 		if (str[i] == '\'' && quotes == no_quotes)
 			quotes = isingle_quotes;
 		else if (str[i] == '\"' && quotes == no_quotes)
@@ -91,6 +92,7 @@ char	*new_expand(char *str, t_mini *env)
 				i++;
 				e++;
 			}
+            
 			if (str[i] == '?')
 			{
 				var = malloc(2);
@@ -124,7 +126,6 @@ char	*new_expand(char *str, t_mini *env)
 			new_str = ft_strjoin(new_str, valeur);
 			while (!find_spliter1(str[i], "|>< \t\n\'\""))
 				i++;
-            
 		}
 		else
 		{
