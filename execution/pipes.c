@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: met-tahe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rbouissa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:53:35 by met-tahe          #+#    #+#             */
-/*   Updated: 2023/03/19 18:53:41 by met-tahe         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:16:37 by rbouissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	hrdpipe_num(t_cmd *tmp)
 		tmp1 = tmp1->next;
 		//printf("herdoc------>> = %s\n", tmp->herdoc[0]);
 	}
-	printf("hrd num = %d\n", i);
+	//printf("hrd num = %d\n", i);
 	return (i);
 }
 void	pipe_herdoc(t_cmd *cmd)

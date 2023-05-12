@@ -1,4 +1,4 @@
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g
 LIBC	= ar -rc
 RM		= rm -f
 NAME	= minishell
@@ -17,11 +17,11 @@ SRC		= main.c \
 			execution/pipes.c \
 			execution/heredoc.c \
 			add_to_list.c \
-			env.c \
 			test_split.c \
 			creat_list_command.c \
 			execution/signals.c \
 			quotes.c\
+			new_env.c\
 
 OBJ	= $(SRC:.c=.o)
 

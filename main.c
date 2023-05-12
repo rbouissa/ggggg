@@ -104,7 +104,9 @@ int	main(int argc, char **argv, char **env)
 			write(1, "exit\n", 5);
 			exit(0);
 		}
-		str_2 = handle_quotes(str, mini);
+         printf("----|||||---%s\n",new_expand(str,mini));
+		str_2 = new_expand(str, mini);
+       
         //printf("ehre00%s\n",str_2);
         //str_2=string_no_quotes(str_2);
         // printf("hhhhh\n");
@@ -127,7 +129,7 @@ int	main(int argc, char **argv, char **env)
 					continue ;
 				tmp = commands;
 			//print_cmd(commands);
-				if (commands->outfile != -1 && commands->outfile != -1)
+				 if (commands->outfile != -1 && commands->outfile != -1)
 					exec_cmd(mini, commands, env);
 			}
 		}
