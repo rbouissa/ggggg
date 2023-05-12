@@ -135,9 +135,10 @@ char	*new_expand(char *str, t_mini *env)
 if (quotes == idouble_quotes || quotes == isingle_quotes)
 {
 	ft_write("syntax error exepected quote");
-	exit(0);
+	//exit(0);
 	return (NULL);
 }
+else
 return (new_str);
 }
 

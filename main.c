@@ -104,7 +104,8 @@ int	main(int argc, char **argv, char **env)
 			write(1, "exit\n", 5);
 			exit(0);
 		}
-         printf("----|||||---%s\n",new_expand(str,mini));
+         //printf("----|||||---%s\n",new_expand(str,mini));
+        //  printf("%d\n",check_eroor(str));
 		str_2 = new_expand(str, mini);
        
         //printf("ehre00%s\n",str_2);
@@ -112,7 +113,7 @@ int	main(int argc, char **argv, char **env)
         // printf("hhhhh\n");
         // printf("size_ofquotes  %s\n",string_no_quotes(str_2));
         // printf("%s\n",str_2);
-		if (alot_of_spliter(str_2))
+		if (str_2!=NULL && alot_of_spliter(str_2)&&check_eroor(str_2))
 		{
 			//add expanding variables
 			if (str_2[0])
