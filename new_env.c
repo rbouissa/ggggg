@@ -61,12 +61,14 @@ char	*new_expand(char *str, t_mini *env)
 	int		k;
 	int		j;
 	int		e;
+    int h;
 
 	i = 0;
 	j = 0;
 	k = 0;
 	quotes = 0;
 	e = 0;
+    h=0;
 	new_str = NULL;
 	dollar = NULL;
 	var = NULL;
@@ -92,13 +94,14 @@ char	*new_expand(char *str, t_mini *env)
 				i++;
 				e++;
 			}
-            
 			if (str[i] == '?')
 			{
+
 				var = malloc(2);
 				var[0] = '?';
 				var[1] = '\0';
 				i++;
+                h++;
 			}
 			else
 			{
@@ -120,7 +123,7 @@ char	*new_expand(char *str, t_mini *env)
 				var[j] = '\0';
 				k = 0;
 			}
-            if ((e % 2 != 0 && e > 2) || (e == 1 && !str[i]))
+            if ((e % 2 != 0 && e > 2) || (e == 1 && !str[i]&&h!=1))
 				new_str = ft_strjoin(new_str, dollar);
             valeur = finnd_valeur(env, var);
 			new_str = ft_strjoin(new_str, valeur);
@@ -133,67 +136,14 @@ char	*new_expand(char *str, t_mini *env)
 			i++;
 		}
 	}
+    free(var);
+    free(dollar);
 if (quotes == idouble_quotes || quotes == isingle_quotes)
 {
 	ft_write("syntax error exepected quote");
-	//exit(0);
 	return (NULL);
 }
 else
 return (new_str);
 }
 
-// char	*handle_quotes(char *str, t_mini *env)
-// {
-// 	int quotes;
-// 	char *buffer;
-// 	int i;
-// 	int k;
-
-// 	quotes = no_quotes;
-// 	buffer = NULL;
-// 	(void)env;
-// 	k = 0;
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		if (str[i] == '\'' && quotes == no_quotes)
-//         {
-// 			quotes = isingle_quotes;
-//         }
-// 		else if (str[i] == '\"' && quotes == no_quotes)
-// 		{
-// 			quotes = idouble_quotes;
-// 		}
-// 		else if (str[i] == '\"' && quotes == idouble_quotes)
-// 		{
-
-// 			quotes = no_quotes;
-// 		}
-// 		else if (str[i] == '\'' && quotes == isingle_quotes)
-// 		{
-
-// 			quotes = no_quotes;
-// 		}
-// 		if (str[i] == '$' && quotes != isingle_quotes)
-// 		{
-// 			buffer = new_expand(str, env);
-// 			k++;
-// 		}
-// 		i++;
-// 	}
-// 	if (quotes == idouble_quotes || quotes == isingle_quotes)
-// 	{
-// 		ft_write("syntax error exepected quote");
-// 		exit(0);
-// 		return (NULL);
-// 	}
-// 	else if (k)
-// 	{
-// 		return (buffer);
-// 	}
-// 	else
-// 	{
-// 		return (str);
-// 	}
-// }

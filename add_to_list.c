@@ -65,7 +65,7 @@ int	check_eroor(char *str)
 				return (0);
 			}
 		}
-		else if (str[i] == '|' && !str[i - 1])
+		else if (str[0] == '|' )
 		{
 			ft_write("syntax error near unexpected token `|'");
 			return (0);

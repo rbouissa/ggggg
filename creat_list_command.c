@@ -18,7 +18,6 @@ void	freestack_last(t_list **stack)
 	if (temp->data)
 		free(temp->data);
 	free(temp);
-	//     free(temp);
 }
 
 int	file_numb(t_list *comm)
@@ -36,6 +35,8 @@ int	file_numb(t_list *comm)
 			break ;
 		if (command->token == 2)
 		{
+            if(token !=0)
+                close(token);
 			token = open(command->next->data, O_CREAT | O_WRONLY, 0777);
 			if (token == -1)
 			{
@@ -75,7 +76,9 @@ int	file_numb2(t_list *comm)
 			break ;
 		if (command->token == 3)
 		{
-			token = open(command->next->data, O_RDONLY, 0777);
+            if(token !=0)
+                close(token);
+			token = open(command->next->data, O_RDONLY);
 			if (token == -1)
 			{
 				printf("minishell: %s: No such file or directory\n",
@@ -174,7 +177,6 @@ t_cmd	*split_to_commands(t_list *comm)
 				command = command->next;
 				if (check == 0)
 				{
-                    printf("one\n");
 					check = 1;
 					if (command->token == 2)
 						token = file_numb(comm);
@@ -288,5 +290,6 @@ t_cmd	*split_to_commands(t_list *comm)
 			//free(herdoc);
 		}
 	}
+    free(spliter);
 	return (list);
 }

@@ -107,6 +107,7 @@ int	main(int argc, char **argv, char **env)
          //printf("----|||||---%s\n",new_expand(str,mini));
         //  printf("%d\n",check_eroor(str));
 		str_2 = new_expand(str, mini);
+        //printf(" ->>>>>.>>%s\n",str_2);
        
         //printf("ehre00%s\n",str_2);
         //str_2=string_no_quotes(str_2);
@@ -129,7 +130,7 @@ int	main(int argc, char **argv, char **env)
 				if (commands == NULL)
 					continue ;
 				tmp = commands;
-			//print_cmd(commands);
+			print_cmd(commands);
 				 if (commands->outfile != -1 && commands->outfile != -1)
 					exec_cmd(mini, commands, env);
 			}
