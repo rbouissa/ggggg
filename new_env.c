@@ -61,14 +61,14 @@ char	*new_expand(char *str, t_mini *env)
 	int		k;
 	int		j;
 	int		e;
-    int h;
+	int		h;
 
 	i = 0;
 	j = 0;
 	k = 0;
 	quotes = 0;
 	e = 0;
-    h=0;
+	h = 0;
 	new_str = NULL;
 	dollar = NULL;
 	var = NULL;
@@ -78,7 +78,7 @@ char	*new_expand(char *str, t_mini *env)
 	dollar[1] = '\0';
 	while (str[i])
 	{
-        e=0;
+		e = 0;
 		if (str[i] == '\'' && quotes == no_quotes)
 			quotes = isingle_quotes;
 		else if (str[i] == '\"' && quotes == no_quotes)
@@ -96,12 +96,11 @@ char	*new_expand(char *str, t_mini *env)
 			}
 			if (str[i] == '?')
 			{
-
 				var = malloc(2);
 				var[0] = '?';
 				var[1] = '\0';
 				i++;
-                h++;
+				h++;
 			}
 			else
 			{
@@ -123,9 +122,9 @@ char	*new_expand(char *str, t_mini *env)
 				var[j] = '\0';
 				k = 0;
 			}
-            if ((e % 2 != 0 && e > 2) || (e == 1 && !str[i]&&h!=1))
+			if ((e % 2 != 0 && e > 2) || (e == 1 && !str[i] && h != 1))
 				new_str = ft_strjoin(new_str, dollar);
-            valeur = finnd_valeur(env, var);
+			valeur = finnd_valeur(env, var);
 			new_str = ft_strjoin(new_str, valeur);
 			while (!find_spliter1(str[i], "|>< \t\n\'\""))
 				i++;
@@ -136,14 +135,13 @@ char	*new_expand(char *str, t_mini *env)
 			i++;
 		}
 	}
-    free(var);
-    free(dollar);
-if (quotes == idouble_quotes || quotes == isingle_quotes)
-{
-	ft_write("syntax error exepected quote");
-	return (NULL);
+	free(var);
+	free(dollar);
+	if (quotes == idouble_quotes || quotes == isingle_quotes)
+	{
+		ft_write("syntax error exepected quote");
+		return (NULL);
+	}
+	else
+		return (new_str);
 }
-else
-return (new_str);
-}
-

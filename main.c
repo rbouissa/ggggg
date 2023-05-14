@@ -114,7 +114,7 @@ int	main(int argc, char **argv, char **env)
         // printf("hhhhh\n");
         // printf("size_ofquotes  %s\n",string_no_quotes(str_2));
         // printf("%s\n",str_2);
-		if (str_2!=NULL && alot_of_spliter(str_2)&&check_eroor(str_2))
+		if (str_2!=NULL &&check_eroor(str_2)&& alot_of_spliter(str_2))
 		{
 			//add expanding variables
 			if (str_2[0])

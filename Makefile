@@ -1,4 +1,4 @@
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g
 LIBC	= ar -rc
 RM		= rm -f
 NAME	= minishell

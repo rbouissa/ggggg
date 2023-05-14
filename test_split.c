@@ -55,33 +55,35 @@ t_list	*ft_split_them(char *str)
 	check = 0;
 	check_q = 0;
 	quotes = 0;
-    node = NULL;
-    st = NULL;
-    s=NULL;
+	node = NULL;
+	st = NULL;
+	s = NULL;
 	j = 0;
 	i = 0;
 	e = 0;
-    token = 0;
-    k=0;
+	token = 0;
+	k = 0;
 	while (str[i])
 	{
 		k = i;
-        if (str[i] == 34 || str[i] == 39)
-        {
-            while (str[i] == 34 || str[i] == 39)
-            {
-            quotes = str[i];
-            i++;
-            while (str[i] && (str[i] != quotes))
-                i++;
-            }
-        }
-        else
-        {
-		//for alocation
 		while (str[i] && !find_spliter(str[i], "|<> \t"))
-            i++;
-        }		
+		{
+			if (str[i] == 34 || str[i] == 39)
+			{
+				while (str[i] == 34 || str[i] == 39)
+				{
+					quotes = str[i];
+					i++;
+					while (str[i] && (str[i] != quotes))
+						i++;
+				}
+			}
+			else
+			{
+				//for alocation
+				i++;
+			}
+		}
 		//if don't find the spliter in the front
 		if (i - k != 0)
 		{
@@ -90,43 +92,45 @@ t_list	*ft_split_them(char *str)
 			i = k;
 			j = 0;
 			//fill our node
-        if(str[i] == 34 || str[i] == 39)
-        {
-        while (str[i] == 34 || str[i] == 39)
-        {
-            node[j] = str[i];
-            quotes = str[i];
-            i++;
-            j++;
-            while (str[i] && (str[i] != quotes))
+            while (str[i] && !find_spliter(str[i], "|<> \t"))
             {
-                node[j] = str[i];
-                j++;
-                i++;
-            }
-            printf("->>>>%c\n",str[i]);
-            node[j] = str[i];
-                j++;
-                i++;
-            node[j] = 0;
-        }
-        }
-        else
-        {
-			while (str[i] && !find_spliter(str[i], "|<> \t"))
+			if (str[i] == 34 || str[i] == 39)
 			{
-				node[j] = str[i];
-				j++;
-				i++;
+				while (str[i] == 34 || str[i] == 39)
+				{
+					node[j] = str[i];
+					quotes = str[i];
+					i++;
+					j++;
+					while (str[i] && (str[i] != quotes))
+					{
+						node[j] = str[i];
+						j++;
+						i++;
+					}
+					printf("->>>>%c\n", str[i]);
+					node[j] = str[i];
+					j++;
+					i++;
+					node[j] = 0;
+				}
 			}
-            node[j] = 0;
-        }
-			 
-             printf("------->%s\n",node);
+			else
+			{
+				
+				{
+					node[j] = str[i];
+					j++;
+					i++;
+				}
+				node[j] = 0;
+			}
+            }
+			printf("------->%s\n", node);
 			//to be here just on time for creat the frist node
 			if (check == 0)
-			{ 
-			 s = ft_lstnew(string_no_quotes(node), 0);
+			{
+				s = ft_lstnew(string_no_quotes(node), 0);
 				check = 1;
 			}
 			//her for the rest
@@ -179,10 +183,8 @@ t_list	*ft_split_them(char *str)
 				}
 			}
 		}
-        
 	}
-    free(node);
-        free(st);
+	free(node);
+	free(st);
 	return (s);
 }
-
