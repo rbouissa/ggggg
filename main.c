@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+ 
 //<Makefile cat <main.c | wc -l;
 
 // t_global			*my_global;
